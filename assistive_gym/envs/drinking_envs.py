@@ -1,11 +1,12 @@
 from .drinking import DrinkingEnv
-from .agents import pr2, baxter, sawyer, jaco, stretch, panda, human
+from .agents import pr2, baxter, sawyer, jaco, stretch, panda, tiago, human
 from .agents.pr2 import PR2
 from .agents.baxter import Baxter
 from .agents.sawyer import Sawyer
 from .agents.jaco import Jaco
 from .agents.stretch import Stretch
 from .agents.panda import Panda
+from .agents.tiago import TIAGo
 from .agents.human import Human
 from ray.rllib.env.multi_agent_env import MultiAgentEnv
 from ray.tune.registry import register_env
@@ -35,6 +36,10 @@ class DrinkingStretchEnv(DrinkingEnv):
 class DrinkingPandaEnv(DrinkingEnv):
     def __init__(self):
         super(DrinkingPandaEnv, self).__init__(robot=Panda(robot_arm), human=Human(human_controllable_joint_indices, controllable=False))
+
+class DrinkingTIAGoEnv(DrinkingEnv):
+    def __init__(self):
+        super(DrinkingTIAGoEnv, self).__init__(robot=TIAGo(robot_arm), human=Human(human_controllable_joint_indices, controllable=False))
 
 class DrinkingPR2HumanEnv(DrinkingEnv, MultiAgentEnv):
     def __init__(self):
@@ -66,3 +71,7 @@ class DrinkingPandaHumanEnv(DrinkingEnv, MultiAgentEnv):
         super(DrinkingPandaHumanEnv, self).__init__(robot=Panda(robot_arm), human=Human(human_controllable_joint_indices, controllable=True))
 register_env('assistive_gym:DrinkingPandaHuman-v1', lambda config: DrinkingPandaHumanEnv())
 
+class DrinkingTIAGoHumanEnv(DrinkingEnv, MultiAgentEnv):
+    def __init__(self):
+        super(DrinkingTIAGoHumanEnv, self).__init__(robot=TIAGo(robot_arm), human=Human(human_controllable_joint_indices, controllable=True))
+register_env('assistive_gym:DrinkingTIAGoHuman-v1', lambda config: DrinkingTIAGoHumanEnv())

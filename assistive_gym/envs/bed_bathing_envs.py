@@ -1,11 +1,12 @@
 from .bed_bathing import BedBathingEnv
-from .agents import pr2, baxter, sawyer, jaco, stretch, panda, human
+from .agents import pr2, baxter, sawyer, jaco, stretch, panda, tiago, human
 from .agents.pr2 import PR2
 from .agents.baxter import Baxter
 from .agents.sawyer import Sawyer
 from .agents.jaco import Jaco
 from .agents.stretch import Stretch
 from .agents.panda import Panda
+from .agents.tiago import TIAGo
 from .agents.human import Human
 from ray.rllib.env.multi_agent_env import MultiAgentEnv
 from ray.tune.registry import register_env
@@ -35,6 +36,10 @@ class BedBathingStretchEnv(BedBathingEnv):
 class BedBathingPandaEnv(BedBathingEnv):
     def __init__(self):
         super(BedBathingPandaEnv, self).__init__(robot=Panda(robot_arm), human=Human(human_controllable_joint_indices, controllable=False))
+
+class BedBathingTIAGoEnv(BedBathingEnv):
+    def __init__(self):
+        super(BedBathingTIAGoEnv, self).__init__(robot=TIAGo(robot_arm), human=Human(human_controllable_joint_indices, controllable=False))
 
 class BedBathingPR2HumanEnv(BedBathingEnv, MultiAgentEnv):
     def __init__(self):
@@ -66,3 +71,7 @@ class BedBathingPandaHumanEnv(BedBathingEnv, MultiAgentEnv):
         super(BedBathingPandaHumanEnv, self).__init__(robot=Panda(robot_arm), human=Human(human_controllable_joint_indices, controllable=True))
 register_env('assistive_gym:BedBathingPandaHuman-v1', lambda config: BedBathingPandaHumanEnv())
 
+class BedBathingTIAGoHumanEnv(BedBathingEnv, MultiAgentEnv):
+    def __init__(self):
+        super(BedBathingTIAGoHumanEnv, self).__init__(robot=TIAGo(robot_arm), human=Human(human_controllable_joint_indices, controllable=True))
+register_env('assistive_gym:BedBathingTIAGoHuman-v1', lambda config: BedBathingTIAGoHumanEnv())

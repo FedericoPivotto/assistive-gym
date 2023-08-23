@@ -1,0 +1,9 @@
+<launch>
+    <arg name="suffix" default=""/>
+    <include file="$(find pal_parallel_gripper_wrapper)/launch/fake_one_joint_gripper.launch">
+      <arg name="suffix" value="$(arg suffix)"/>
+    </include>
+    <include file="$(find pal_parallel_gripper_wrapper)/launch/grasping_service.launch">
+      <arg name="suffix" value="$(arg suffix)"/>
+    </include>
+</launch>

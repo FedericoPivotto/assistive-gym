@@ -1,7 +1,7 @@
 from gym.envs.registration import register
 
 tasks = ['ScratchItch', 'BedBathing', 'Feeding', 'Drinking', 'Dressing', 'ArmManipulation']
-robots = ['PR2', 'Jaco', 'Baxter', 'Sawyer', 'Stretch', 'Panda']
+robots = ['PR2', 'Jaco', 'Baxter', 'Sawyer', 'Stretch', 'Panda', 'TIAGo']
 
 for task in tasks:
     for robot in robots:

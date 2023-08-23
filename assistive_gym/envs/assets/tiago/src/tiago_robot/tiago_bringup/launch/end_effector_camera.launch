@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch>
+    <!-- default args original endoscopic camera -->
+    <arg name="video_device" default="/dev/video0"/>
+    <arg name="framerate" default="14"/>
+    <!-- if 2 cameras needed args -->
+    <arg name="camera" default="camera"/> <!-- right_camera or left_camera -->
+    <arg name="rotation" default="0"/>
+
+    <arg name="side" value="right_" if="$(eval camera == 'right_camera')"/>
+    <arg name="side" value="left_" if="$(eval camera == 'left_camera')"/>
+    <arg name="side" value="" if="$(eval camera == 'camera')"/>
+
+    <node pkg="usb_cam" type="usb_cam_node" name="end_effector_$(arg camera)">
+        <!-- Parameters used to find the camera -->
+        <param name="video_device" value="$(arg video_device)"/>
+
+        <!-- Image size and type -->
+        <param name="image_width" value="640"/>
+        <param name="image_height" value="480"/>
+        <!-- choose whichever uncompressed format the camera supports: -->
+        <param name="pixel_format" value="yuyv"/> <!-- or yuyv/nv12/mjpeg -->
+        <param name="framerate" value="$(arg framerate)"/>
+
+        <param name="camera_name" value="end_effector_$(arg camera)"/>
+        <param name="camera_frame_id" value="gripper_$(arg side)endoscopic_frame"/>
+        <param name="camera_info_url" value="file:///tmp/cam.yaml"/>
+
+    </node>
+    <node pkg="tf" type="static_transform_publisher" name="gripper_$(arg side)endoscopic_link"
+        args="0 -0.03745 -0.123 -1.5708 1.5708 $(arg rotation) gripper_$(arg side)link gripper_$(arg side)endoscopic_frame 100" />
+    <node pkg="tf" type="static_transform_publisher" name="gripper_$(arg side)endoscopic_optical_link"
+        args="0 0 0 -1.5708 0 -1.5708 gripper_$(arg side)endoscopic_frame gripper_$(arg side)endoscopic_optical_frame 100" />
+</launch>
+

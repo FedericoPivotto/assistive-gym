@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!--
+
+  Copyright (c) 2015, PAL Robotics, S.L.
+  All rights reserved.
+
+  This work is licensed under the Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License.
+  To view a copy of this license, visit http://creativecommons.org/licenses/by-nc-nd/3.0/ or send a letter to
+  Creative Commons, 444 Castro Street, Suite 900, Mountain View, California, 94041, USA.
+-->
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:macro name="finger_gazebo" params="name">
+    <gazebo reference="${name}_link">
+      <collision name="${name}_link">
+        <surface>
+          <friction>
+            <torsional>
+              <coefficient>1000.0</coefficient>
+              <use_patch_radius>true</use_patch_radius>
+              <patch_radius>0.1</patch_radius>
+            </torsional>
+          </friction>
+          <contact>
+            <poissons_ratio>1.0</poissons_ratio>
+            <elastic_modulus>Inf</elastic_modulus>
+          </contact>
+        </surface>
+      </collision>
+      <mu1>Inf</mu1>
+      <mu2>Inf</mu2>
+      <maxVel>0.0</maxVel>
+      <kp>Inf</kp>
+      <kd>100.0</kd>
+      <fdir1>1 0 0</fdir1>
+      <maxVel>0.0</maxVel>
+      <minDepth>0.002</minDepth>
+      <maxContacts>100</maxContacts>
+      <material>Gazebo/Black</material>
+    </gazebo>
+    <gazebo reference="${name}_joint">
+      <implicitSpringDamper>1</implicitSpringDamper>
+      <provideFeedback>1</provideFeedback>
+    </gazebo>
+  </xacro:macro>
+
+</robot>

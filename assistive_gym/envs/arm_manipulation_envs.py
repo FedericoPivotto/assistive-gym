@@ -1,11 +1,12 @@
 from .arm_manipulation import ArmManipulationEnv
-from .agents import pr2, baxter, sawyer, jaco, stretch, panda, human
+from .agents import pr2, baxter, sawyer, jaco, stretch, panda, tiago, human
 from .agents.pr2 import PR2
 from .agents.baxter import Baxter
 from .agents.sawyer import Sawyer
 from .agents.jaco import Jaco
 from .agents.stretch import Stretch
 from .agents.panda import Panda
+from .agents.tiago import TIAGo
 from .agents.human import Human
 from ray.rllib.env.multi_agent_env import MultiAgentEnv
 from ray.tune.registry import register_env
@@ -35,6 +36,10 @@ class ArmManipulationStretchEnv(ArmManipulationEnv):
 class ArmManipulationPandaEnv(ArmManipulationEnv):
     def __init__(self):
         super(ArmManipulationPandaEnv, self).__init__(robot=Panda(robot_arm), human=Human(human_controllable_joint_indices, controllable=False))
+
+class ArmManipulationTIAGoEnv(ArmManipulationEnv):
+    def __init__(self):
+        super(ArmManipulationTIAGoEnv, self).__init__(robot=TIAGo(robot_arm), human=Human(human_controllable_joint_indices, controllable=False))
 
 class ArmManipulationPR2HumanEnv(ArmManipulationEnv, MultiAgentEnv):
     def __init__(self):
@@ -66,3 +71,7 @@ class ArmManipulationPandaHumanEnv(ArmManipulationEnv, MultiAgentEnv):
         super(ArmManipulationPandaHumanEnv, self).__init__(robot=Panda(robot_arm), human=Human(human_controllable_joint_indices, controllable=True))
 register_env('assistive_gym:ArmManipulationPandaHuman-v1', lambda config: ArmManipulationPandaHumanEnv())
 
+class ArmManipulationTIAGoHumanEnv(ArmManipulationEnv, MultiAgentEnv):
+    def __init__(self):
+        super(ArmManipulationTIAGoHumanEnv, self).__init__(robot=TIAGo(robot_arm), human=Human(human_controllable_joint_indices, controllable=True))
+register_env('assistive_gym:ArmManipulationTIAGoHuman-v1', lambda config: ArmManipulationTIAGoHumanEnv())
