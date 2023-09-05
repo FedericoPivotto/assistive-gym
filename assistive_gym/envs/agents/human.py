@@ -143,7 +143,8 @@ class Human(Agent):
         tx2 = (tx + 2*np.pi) % (2*np.pi)
         ty2 = (-1 if right else 1)*ty
         qe2 = (-qe + 2*np.pi) % (2*np.pi)
-        result = self.limits_model.predict_classes(np.array([[tz2, tx2, ty2, qe2]]))
+        predict_class = self.limits_model.predict(np.array([[tz2, tx2, ty2, qe2]])) 
+        result = np.argmax(predict_class, axis=1)
         if result == 1:
             # This is a valid pose for the person
             self.arm_previous_valid_pose[right] = [tz, tx, ty, qe]

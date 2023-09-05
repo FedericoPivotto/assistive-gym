@@ -18,7 +18,7 @@ setup(name='assistive-gym',
     packages=find_packages(),
     python_requires='>=3',
     # install_requires=['gym>=0.2.3', 'pybullet', 'numpy', 'keras==2.3.0', 'tensorflow==1.14.0', 'h5py==2.10.0', 'smplx', 'trimesh'] + ['screeninfo==0.6.1' if sys.version_info >= (3, 6) else 'screeninfo==0.2'],
-    install_requires=['gym>=0.2.3', 'pybullet @ git+https://github.com/Zackory/bullet3.git#egg=pybullet', 'numpy', 'keras==2.3.0', 'tensorflow==1.14.0', 'h5py==2.10.0', 'smplx', 'trimesh', 'ray[rllib]', 'numpngw', 'tensorflow-probability==0.7.0'] + ['screeninfo==0.6.1' if sys.version_info >= (3, 6) else 'screeninfo==0.2'],
+    install_requires=['gym>=0.2.3', 'pybullet @ git+https://github.com/Zackory/bullet3.git#egg=pybullet', 'numpy', 'keras==2.6.0', 'tensorflow==2.6.2', 'h5py==3.1.0', 'smplx', 'trimesh', 'ray[rllib]==1.3.0', 'numpngw', 'tensorflow-probability==0.7.0'] + ['screeninfo==0.6.1' if sys.version_info >= (3, 6) else 'screeninfo==0.2'] + ['lz4==3.1.3'], # NOTE: Python 3.6 requires at most 'lz4==3.1.3' because future feature annotations is not defined
     # description='Physics simulation for assistive robotics and human-robot interaction.',
     # long_description=long_description,
     long_description_content_type="text/markdown",
