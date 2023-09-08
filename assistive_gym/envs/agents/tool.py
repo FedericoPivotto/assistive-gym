@@ -47,8 +47,8 @@ class Tool(Agent):
                 for tj in self.all_joint_indices + [self.base]:
                     p.setCollisionFilterPair(robot.body, self.body, j, tj, False, physicsClientId=id)
             # Create constraint that keeps the tool in the gripper
-            constraint = p.createConstraint(robot.body, robot.right_tool_joint if right else robot.left_tool_joint, self.body, -1, p.JOINT_FIXED, [0, 0, 0], parentFramePosition=self.pos_offset, childFramePosition=[0, 0, 0], parentFrameOrientation=self.orient_offset, childFrameOrientation=[0, 0, 0, 1], physicsClientId=id)
-            p.changeConstraint(constraint, maxForce=500, physicsClientId=id)
+            self.constraint = p.createConstraint(robot.body, robot.right_tool_joint if right else robot.left_tool_joint, self.body, -1, p.JOINT_FIXED, [0, 0, 0], parentFramePosition=self.pos_offset, childFramePosition=[0, 0, 0], parentFrameOrientation=self.orient_offset, childFrameOrientation=[0, 0, 0, 1], physicsClientId=id)
+            p.changeConstraint(self.constraint, maxForce=500, physicsClientId=id)
 
     def get_transform(self):
         if self.robot is not None:
