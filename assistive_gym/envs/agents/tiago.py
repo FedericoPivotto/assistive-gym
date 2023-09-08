@@ -26,7 +26,8 @@ class TIAGo(Robot):
                        'drinking': [0.037, 0.037],
                        'bed_bathing': [0.025, 0.025],
                        'dressing': [0]*2,
-                       'arm_manipulation': [0.025, 0.025]}
+                       'arm_manipulation': [0.025, 0.025],
+                       'object_handover': [0.007, 0.007]}
         
         # Position offset between tool and robot tool joint
         tool_pos_offset = {'scratch_itch': [0, 0, -0.2],
@@ -34,7 +35,8 @@ class TIAGo(Robot):
                            'drinking': [0, -0.03, -0.16],
                            'bed_bathing': [0, 0, -0.2],
                            'dressing': [],
-                           'arm_manipulation': [0, -0.08, -0.31]}
+                           'arm_manipulation': [0, -0.08, -0.31],
+                           'object_handover': [-0.015, 0, -0.2]}
         
         # RPY orientation offset between tool and robot tool joint
         tool_orient_offset = {'scratch_itch': [0, np.pi/2.0, 0],
@@ -42,7 +44,8 @@ class TIAGo(Robot):
                               'drinking': [0, np.pi/2.0, 0],
                               'bed_bathing': [-np.pi/2, 0, 0],
                               'dressing': [],
-                              'arm_manipulation': [0, np.pi/2, 0]}
+                              'arm_manipulation': [0, np.pi/2, 0],
+                              'object_handover': [np.pi/2.0, np.pi, np.pi/2.0]}
         
         # Robot base offset before TOC base pose optimization
         toc_base_pos_offset = {'scratch_itch': [-0.2, -0.13, 0.05],
@@ -50,7 +53,8 @@ class TIAGo(Robot):
                                'drinking': [0.2, -0.08, 0.05],
                                'bed_bathing': [-0.1, 0, 0],
                                'dressing': [1.7, 0.7, 0],
-                               'arm_manipulation': [-0.5, 0.7, 0]} 
+                               'arm_manipulation': [-0.5, 0.7, 0],
+                               'object_handover': [-0.1, 0.5, 0.05]} 
 
         # Initial end effector orientation
         toc_ee_orient_rpy = {'scratch_itch': [np.pi/2.0, 0, 0],
@@ -58,7 +62,8 @@ class TIAGo(Robot):
                              'drinking': [np.pi/2.0, 0, 0],
                              'bed_bathing': [np.pi/2.0, 0, 0],
                              'dressing': [[0, 0, np.pi], [0, 0, np.pi*3/2.0]],
-                             'arm_manipulation': [np.pi/2, 0, 0]}
+                             'arm_manipulation': [np.pi/2, 0, 0],
+                             'object_handover': [np.pi/2.0, 0, 0]}
         
         # NOTE: in BedBathing environments, sometimes the arm glitches
         # NOTE: in ArmManipulation environments, after the first run the human model swells

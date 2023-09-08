@@ -34,6 +34,8 @@ class Furniture(Agent):
             furniture = p.loadURDF(os.path.join(directory, 'dinnerware', 'bowl.urdf'), basePosition=bowl_pos, baseOrientation=[0, 0, 0, 1], physicsClientId=id)
         elif furniture_type == 'nightstand':
             furniture = p.loadURDF(os.path.join(directory, 'nightstand', 'nightstand.urdf'), basePosition=np.array([-0.9, 0.7, 0]), baseOrientation=[0, 0, 0, 1], physicsClientId=id)
+        elif furniture_type == 'toolbox': # Toolbox model loading using the nightstand model
+            furniture = p.loadURDF(os.path.join(directory, 'nightstand', 'nightstand.urdf'), basePosition=np.array([-1, 0.9, 0]), baseOrientation=[0, 0, 0.5, 1], physicsClientId=id)
         else:
             furniture = None
 

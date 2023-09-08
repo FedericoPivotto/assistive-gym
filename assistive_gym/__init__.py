@@ -11,6 +11,13 @@ for task in tasks:
             max_episode_steps=200,
         )
 
+# TIAGo robot registration for object handover with static human
+register(
+    id='ObjectHandoverTIAGo-v1',
+    entry_point='assistive_gym.envs:ObjectHandoverTIAGoEnv',
+    max_episode_steps=200,
+)
+
 for task in ['ScratchItch', 'Feeding']:
     for robot in robots:
         register(
