@@ -47,6 +47,24 @@ The installation of the framework was based on a virtual environment with Python
 gym==0.15.7, tensorflow==2.6.2, keras==2.6.0, h5py==3.1.0, ray[rllib]==1.3.0, lz4==3.1.3
 ```
 
+### Full installation
+
+With these requirements in mind, to perform a full installation of the Assistive Gym v1.0 framework using a python virtualenv, it is necessary to issue the following commands:
+```bash
+python3 -m pip install virtualenv
+python3 -m venv env
+source env/bin/activate
+
+pip3 install --upgrade pip
+
+git clone https://github.com/FedericoPivotto/assistive-gym
+cd assistive-gym
+git checkout final
+
+pip3 install -e .
+pip3 install gym==0.15.7
+```
+
 ### Fix for TensorFlow 2.6.2
 
 The upgrade to TensorFlow 2.6.2 required a refactor to replace a deprecated function used in the framework. In particular, the file subject to change is `assistive_gym/envs/agents/human.py/human.py` where the following line of code:
